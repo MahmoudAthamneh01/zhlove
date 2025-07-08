@@ -1,0 +1,590 @@
+{
+  "navigation": {
+    "home": "الرئيسية",
+    "gameInfo": "معلومات اللعبة",
+    "support": "الدعم",
+    "forum": "المنتدى",
+    "tournaments": "البطولات",
+    "streamers": "المبثين",
+    "replays": "الإعادات",
+    "rankings": "التصنيفات",
+    "clans": "العشائر",
+    "profile": "الملف الشخصي",
+    "messages": "الرسائل",
+    "settings": "الإعدادات",
+    "admin": "الإدارة",
+    "profile": "الملف الشخصي",
+    "messages": "الرسائل",
+    "settings": "الإعدادات",
+    "admin": "الإدارة",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "register": "إنشاء حساب"
+  },
+  "home": {
+    "title": "ZH-Love - مجتمع لعبة Command & Conquer: Generals Zero Hour",
+    "subtitle": "أكبر مجتمع عربي وعالمي للعبة Generals Zero Hour",
+    "welcomeMessage": "انضم إلى المجتمع الأفضل للاعبي Command & Conquer: Generals Zero Hour",
+    "featuresTitle": "ميزات المنصة",
+    "createClan": "أنشئ عشيرتك",
+    "trackRanking": "تتبع ترتيبك العالمي",
+    "postForums": "شارك في المنتديات",
+    "hostTournaments": "استضف بطولات مخصصة",
+    "onlineStats": "اللاعبون المتصلون",
+    "forumActivity": "نشاط المنتدى",
+    "activeTournaments": "البطولات النشطة",
+    "donation": "ادعم ZH-Love",
+    "donationDesc": "ساعدنا في الحفاظ على المنصة وتطويرها",
+    "hero": {
+      "title": "سيطر على ساحة المعركة",
+      "subtitle": "انضم إلى أكبر مجتمع للاعبي Generals Zero Hour. تنافس، تواصل، وسيطر.",
+      "joinNow": "انضم الآن",
+      "learnMore": "اعرف المزيد"
+    },
+    "stats": {
+      "totalMembers": "إجمالي الأعضاء",
+      "activeTournaments": "البطولات النشطة",
+      "forumPosts": "منشورات المنتدى",
+      "onlinePlayers": "لاعبون متصلون"
+    },
+    "features": {
+      "title": "اكتشف كل شيء عن ZH-Love",
+      "subtitle": "استكشف جميع الميزات والإمكانيات التي نوفرها لمجتمع Zero Hour",
+      "clans": {
+        "title": "كوّن عشيرتك",
+        "description": "انضم أو أنشئ عشيرة، وشارك في حروب العشائر، واحتل قمة المجد.",
+        "action": "استكشف العشائر"
+      },
+      "rankings": {
+        "title": "تتبع ترتيبك العالمي",
+        "description": "راقب تقدمك، وتحدى اللاعبين، واصعد في لوحة الصدارة العالمية.",
+        "action": "عرض التصنيفات"
+      },
+      "forum": {
+        "title": "شارك في المنتديات",
+        "description": "تواصل مع المجتمع، شارك الاستراتيجيات، وناقش آخر التحديثات.",
+        "action": "اذهب للمنتدى"
+      },
+      "tournaments": {
+        "title": "استضف البطولات",
+        "description": "نظم مسابقات وبطولات مخصصة وأظهر مهاراتك للعالم.",
+        "action": "تصفح البطولات"
+      }
+    },
+    "cta": {
+      "title": "هل أنت مستعد للمنافسة؟",
+      "subtitle": "انضم إلى آلاف اللاعبين واستمتع بأفضل تجربة Zero Hour",
+      "description": "أنشئ حسابك المجاني الآن وانضم إلى آلاف اللاعبين في ساحة المعركة.",
+      "register": "إنشاء حساب مجاني",
+      "learn": "تعلم المزيد عن المنصة",
+      "action": "أنشئ حسابك"
+    }
+  },
+  "gameInfo": {
+    "title": "معلومات اللعبة",
+    "subtitle": "كل ما تحتاج لمعرفته عن Command & Conquer: Generals Zero Hour",
+    "timeline": "تطور اللعبة (2003-2023)",
+    "famousPlayers": "اللاعبون المشهورون والأبطال",
+    "gameplayModes": "أنماط اللعب",
+    "tacticalGuide": "الدليل التكتيكي",
+    "beginnerGuide": "دليل المبتدئين",
+    "proGuide": "دليل المحترفين",
+    "gameHistory": "تاريخ اللعبة",
+    "gameHistoryDesc": "من إصدارها في 2003 إلى مجتمع 2023 المزدهر",
+    "releaseDate": "أكتوبر 2003",
+    "releaseDesc": "EA Games تطلق Command & Conquer: Generals Zero Hour كتوسعة لـ C&C Generals",
+    "esportsEra": "2010-2015",
+    "esportsDesc": "نهضة الألعاب التنافسية مع البطولات الكبرى واللاعبين المحترفين",
+    "modernEra": "2016-2023",
+    "modernDesc": "التطوير المدفوع من المجتمع، والتعديل، ومنصات مثل ZH-Love",
+    "legendaryPlayers": "اللاعبون الأسطوريون",
+    "worldChampions": "أبطال العالم",
+    "topStrategists": "كبار الاستراتيجيين",
+    "communityLeaders": "قادة المجتمع",
+    "playerBio": "معروف بالاستراتيجيات المبتكرة وانتصارات البطولات",
+    "gameModes": {
+      "title": "أنماط اللعب",
+      "skirmish": "معركة منفردة",
+      "skirmishDesc": "لاعب واحد ضد خصوم ذكي اصطناعي",
+      "multiplayer": "متعدد اللاعبين",
+      "multiplayerDesc": "معارك عبر الإنترنت مع لاعبين من العالم",
+      "tournament": "بطولة",
+      "tournamentDesc": "مباريات تنافسية بجداول منظمة",
+      "custom": "ألعاب مخصصة",
+      "customDesc": "خرائط وتعديلات من إبداع المجتمع"
+    },
+    "factions": {
+      "title": "الفصائل",
+      "usa": "الولايات المتحدة",
+      "usaDesc": "جيش عالي التقنية بأسلحة متقدمة ودعم جوي",
+      "china": "الصين",
+      "chinaDesc": "جيوش ضخمة بأعداد متفوقة وقوة نووية",
+      "gla": "جيش التحرير العالمي",
+      "glaDesc": "تكتيكات حرب العصابات ووحدات التخفي والحرب غير التقليدية"
+    },
+    "tactics": {
+      "title": "الأدلة التكتيكية",
+      "beginnerTitle": "دليل المبتدئين",
+      "beginnerIntro": "تعلم أساسيات Command & Conquer: Generals Zero Hour",
+      "proTitle": "الاستراتيجيات المتقدمة",
+      "proIntro": "تكتيكات مستوى الخبراء وتقنيات اللعب التنافسي",
+      "economy": "إدارة الاقتصاد",
+      "economyDesc": "بناء أساس اقتصادي قوي",
+      "military": "الاستراتيجية العسكرية",
+      "militaryDesc": "تشكيل الوحدات الفعال وتكتيكات ميدان المعركة",
+      "baseBuilding": "بناء القاعدة",
+      "baseBuildingDesc": "تخطيط القاعدة الأمثل والهياكل الدفاعية",
+      "microManagement": "الإدارة الدقيقة",
+      "microDesc": "التحكم المتقدم بالوحدات وتقنيات الأمثلة"
+    }
+  },
+  "messages": {
+    "title": "الرسائل",
+    "subtitle": "المحادثات الخاصة وتاريخ الدردشة",
+    "search": "البحث في المحادثات...",
+    "newMessage": "رسالة جديدة",
+    "online": "متصل",
+    "offline": "غير متصل",
+    "away": "غائب",
+    "typing": "يكتب...",
+    "sendMessage": "إرسال رسالة...",
+    "attachFile": "إرفاق ملف",
+    "sendButton": "إرسال"
+  },
+  "support": {
+    "title": "مركز الدعم",
+    "subtitle": "احصل على المساعدة في المشاكل التقنية ومساعدة اللعبة",
+    "requestForm": "نموذج طلب الدعم",
+    "downloadGame": "تحميل النسخة الرسمية للعبة",
+    "troubleshooting": "حل المشاكل الشائعة",
+    "faq": "الأسئلة الشائعة",
+    "contactUs": "اتصل بنا",
+    "downloadTitle": "تحميل Zero Hour",
+    "downloadSubtitle": "احصل على النسخة الرسمية من Command & Conquer: Generals Zero Hour",
+    "downloadLatest": "تحميل أحدث إصدار",
+    "downloadSize": "حجم الملف: 1.2 جيجابايت",
+    "downloadNote": "يتضمن جميع التحديثات والإصلاحات الرسمية",
+    "form": {
+      "name": "الاسم الكامل",
+      "email": "عنوان البريد الإلكتروني",
+      "subject": "الموضوع",
+      "category": "الفئة",
+      "categoryPlaceholder": "اختر فئة",
+      "message": "الرسالة",
+      "messagePlaceholder": "يرجى وصف مشكلتك بالتفصيل...",
+      "submit": "إرسال الطلب",
+      "categories": {
+        "technical": "مشكلة تقنية",
+        "gameplay": "مساعدة في اللعب",
+        "account": "مشكلة في الحساب",
+        "bug": "بلاغ خطأ",
+        "feature": "طلب ميزة",
+        "other": "أخرى"
+      }
+    },
+    "faqItems": [
+      {
+        "question": "كيف أقوم بتثبيت Zero Hour؟",
+        "answer": "قم بتحميل أداة التثبيت من قسم التحميلات، وشغلها كمدير، واتبع معالج التثبيت."
+      },
+      {
+        "question": "لماذا لا يمكنني الاتصال بالألعاب عبر الإنترنت؟",
+        "answer": "تحقق من إعدادات جدار الحماية وتأكد من أن المنافذ 8086-8090 مفتوحة."
+      },
+      {
+        "question": "كيف أبلغ عن خطأ؟",
+        "answer": "استخدم نموذج الدعم أعلاه واختر 'بلاغ خطأ' كفئة."
+      },
+      {
+        "question": "هل يمكنني اللعب مع الأصدقاء عبر الإنترنت؟",
+        "answer": "نعم! يمكنك إنشاء غرف خاصة أو الانضمام إلى ألعاب عامة."
+      }
+    ],
+    "troubleshootingItems": [
+      {
+        "problem": "تعطل اللعبة عند بدء التشغيل",
+        "solution": "جرب تشغيل اللعبة كمدير وقم بتحديث برامج تشغيل الرسومات."
+      },
+      {
+        "problem": "لا يمكنني رؤية لاعبين آخرين في اللعب متعدد الأشخاص",
+        "solution": "تحقق من إعدادات جدار الحماية وتأكد من أن اللعبة مسموح لها عبر Windows Defender."
+      },
+      {
+        "problem": "معدل إطارات منخفض أو تأخير",
+        "solution": "قلل إعدادات الرسومات وأغلق البرامج غير الضرورية في الخلفية."
+      },
+      {
+        "problem": "مشاكل في الصوت",
+        "solution": "حدث برامج تشغيل الصوت وتحقق من إعدادات الصوت داخل اللعبة."
+      }
+    ]
+  },
+  "forum": {
+    "title": "منتدى المجتمع",
+    "subtitle": "تواصل وناقش وشارك مع مجتمع ZH-Love",
+    "newPost": "منشور جديد",
+    "createPost": "إنشاء منشور جديد",
+    "mostLiked": "الأكثر إعجاباً",
+    "mostRecent": "الأحدث",
+    "mostCommented": "الأكثر تعليقاً",
+    "like": "إعجاب",
+    "comment": "تعليق",
+    "share": "مشاركة",
+    "report": "إبلاغ",
+    "reply": "رد",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "writePost": "بم تفكر؟",
+    "postPlaceholder": "شارك أفكارك واستراتيجياتك أو اطرح أسئلة...",
+    "postButton": "نشر",
+    "uploadImage": "رفع صورة",
+    "filters": {
+      "all": "جميع المنشورات",
+      "popular": "الشائعة",
+      "recent": "الأحدث",
+      "discussions": "النقاشات",
+      "questions": "الأسئلة",
+      "guides": "الأدلة"
+    },
+    "interactions": {
+      "likes": "إعجابات",
+      "comments": "تعليقات",
+      "shares": "مشاركات",
+      "views": "مشاهدات"
+    },
+    "timeAgo": {
+      "now": "الآن",
+      "minute": "1د",
+      "minutes": "د",
+      "hour": "1س",
+      "hours": "س",
+      "day": "1ي",
+      "days": "ي",
+      "week": "1أ",
+      "weeks": "أ"
+    },
+    "actions": {
+      "writeComment": "اكتب تعليقاً...",
+      "showMoreComments": "عرض تعليقات أكثر",
+      "hideComments": "إخفاء التعليقات",
+      "pinPost": "تثبيت المنشور",
+      "unpinPost": "إلغاء التثبيت"
+    }
+  },
+  "tournaments": {
+    "title": "البطولات والتحديات",
+    "subtitle": "تنافس مع أفضل اللاعبين واربح جوائز مذهلة",
+    "tournaments": "البطولات",
+    "challenges": "التحديات",
+    "active": "نشطة",
+    "ended": "منتهية",
+    "archived": "مؤرشفة",
+    "upcoming": "قادمة",
+    "search": "ابحث عن البطولات...",
+    "register": "تسجيل",
+    "participants": "المشاركون",
+    "prize": "الجائزة",
+    "streamer": "المبث",
+    "status": "الحالة",
+    "join": "انضمام",
+    "joinTournament": "انضم للبطولة",
+    "closeRegistration": "إغلاق التسجيل",
+    "viewDetails": "عرض التفاصيل",
+    "createTournament": "إنشاء بطولة",
+    "createChallenge": "إنشاء تحدي",
+    "filters": {
+      "all": "جميع الأحداث",
+      "tournaments": "البطولات",
+      "challenges": "التحديات",
+      "1v1": "1ضد1",
+      "team": "فريق",
+      "ffa": "الكل ضد الكل"
+    },
+    "details": {
+      "description": "الوصف",
+      "rules": "القوانين",
+      "schedule": "الجدولة",
+      "bracket": "الجدول",
+      "maps": "الخرائط",
+      "startTime": "وقت البداية",
+      "endTime": "وقت النهاية",
+      "registrationDeadline": "آخر موعد للتسجيل",
+      "maxParticipants": "العدد الأقصى للمشاركين",
+      "format": "التنسيق",
+      "prizePool": "مجموع الجوائز"
+    },
+    "status": {
+      "registrationOpen": "التسجيل مفتوح",
+      "registrationClosed": "التسجيل مغلق",
+      "inProgress": "جارية",
+      "completed": "مكتملة",
+      "cancelled": "ملغية"
+    },
+    "prizes": {
+      "first": "المركز الأول",
+      "second": "المركز الثاني",
+      "third": "المركز الثالث"
+    },
+    "actions": {
+      "withdraw": "انسحاب",
+      "reportMatch": "تقرير المباراة",
+      "downloadMap": "تحميل الخريطة",
+      "watchStream": "مشاهدة البث"
+    }
+  },
+  "rankings": {
+    "title": "التصنيفات والعشائر",
+    "subtitle": "تتبع تقدمك وتنافس مع الأفضل",
+    "rankings": "التصنيفات",
+    "clans": "العشائر",
+    "playerRankings": "تصنيفات اللاعبين",
+    "clanRankings": "تصنيفات العشائر",
+    "myRank": "تصنيفي",
+    "myStats": "إحصائياتي",
+    "player": "اللاعب",
+    "clan": "العشيرة",
+    "rank": "المرتبة",
+    "points": "النقاط",
+    "wins": "الانتصارات",
+    "losses": "الخسائر",
+    "winRate": "معدل الفوز",
+    "totalMatches": "إجمالي المباريات",
+    "lastMatch": "آخر مباراة",
+    "joinDate": "تاريخ الانضمام",
+    "level": "المستوى",
+    "experience": "الخبرة",
+    "faction": "الفصيل",
+    "profile": "الملف الشخصي",
+    "filters": {
+      "all": "جميع اللاعبين",
+      "usa": "أمريكا",
+      "china": "الصين",
+      "gla": "جيش التحرير العالمي",
+      "1v1": "1ضد1",
+      "team": "فريق",
+      "ffa": "الكل ضد الكل"
+    },
+    "clans": {
+      "members": "الأعضاء",
+      "leader": "القائد",
+      "founded": "تأسست",
+      "trophies": "الكؤوس",
+      "clanWars": "حروب العشائر",
+      "totalWins": "إجمالي الانتصارات",
+      "joinClan": "انضم للعشيرة",
+      "leaveClan": "غادر العشيرة",
+      "createClan": "إنشاء عشيرة",
+      "manageClan": "إدارة العشيرة",
+      "clanDetails": "تفاصيل العشيرة",
+      "memberList": "قائمة الأعضاء",
+      "warHistory": "تاريخ الحروب",
+      "invitePlayer": "دعوة لاعب",
+      "kickMember": "طرد عضو",
+      "promoteToLeader": "ترقية لقائد",
+      "clanSettings": "إعدادات العشيرة"
+    },
+    "badges": {
+      "rookie": "مبتدئ",
+      "bronze": "برونزي",
+      "silver": "فضي",
+      "gold": "ذهبي",
+      "platinum": "بلاتيني",
+      "diamond": "ماسي",
+      "master": "خبير",
+      "grandmaster": "خبير كبير",
+      "legend": "أسطوري"
+    },
+    "stats": {
+      "gamesPlayed": "المباريات المكتملة",
+      "averageMatchTime": "متوسط وقت المباراة",
+      "favoriteMap": "الخريطة المفضلة",
+      "bestStreak": "أفضل سلسلة انتصارات",
+      "currentStreak": "السلسلة الحالية",
+      "totalPlayTime": "إجمالي وقت اللعب",
+      "monthlyStats": "إحصائيات الشهر",
+      "recentMatches": "المباريات الأخيرة"
+    }
+  },
+  "streamers": {
+    "title": "مبثو ZH-Love",
+    "subtitle": "شاهد أفضل منشئي محتوى Zero Hour وتعلم من المحترفين",
+    "featured": "المبثون المميزون",
+    "live": "مباشر الآن",
+    "offline": "غير متصل",
+    "viewers": "مشاهد",
+    "subscribers": "مشترك",
+    "videos": "فيديو",
+    "watchLive": "شاهد مباشر",
+    "viewChannel": "عرض القناة",
+    "subscribe": "اشتراك",
+    "latest": "أحدث الفيديوهات",
+    "popular": "الفيديوهات الشائعة",
+    "recent": "البثوث الأخيرة",
+    "allStreamers": "جميع المبثين",
+    "sortBy": {
+      "popularity": "الشعبية",
+      "viewers": "المشاهدين",
+      "subscribers": "المشتركين",
+      "recent": "النشاط الأخير"
+    },
+    "filters": {
+      "all": "الكل",
+      "live": "مباشر",
+      "english": "إنجليزي",
+      "arabic": "عربي",
+      "pro": "لاعبون محترفون",
+      "educational": "تعليمي",
+      "entertainment": "ترفيهي"
+    },
+    "stats": {
+      "totalViewers": "إجمالي المشاهدين",
+      "liveStreams": "البثوث المباشرة",
+      "totalStreamers": "إجمالي المبثين",
+      "hoursWatched": "ساعات المشاهدة"
+    }
+  },
+  "replays": {
+    "title": "إعادات المباريات",
+    "subtitle": "شاهد وحمل أفضل مباريات Zero Hour",
+    "featured": "الإعادات المميزة",
+    "uploadButton": "رفع إعادة",
+    "download": "تحميل",
+    "watch": "مشاهدة",
+    "like": "إعجاب",
+    "share": "مشاركة",
+    "report": "إبلاغ",
+    "player": "اللاعب",
+    "faction": "الفصيل",
+    "map": "الخريطة",
+    "duration": "المدة",
+    "date": "التاريخ",
+    "fileSize": "حجم الملف",
+    "downloads": "التحميلات",
+    "likes": "الإعجابات",
+    "views": "المشاهدات",
+    "uploadedBy": "رفعت بواسطة",
+    "categories": {
+      "all": "جميع الإعادات",
+      "featured": "مميزة",
+      "tournaments": "إعادات البطولات",
+      "highlights": "أبرز اللحظات",
+      "educational": "تعليمية",
+      "recent": "حديثة",
+      "popular": "شائعة"
+    },
+    "filters": {
+      "faction": "الفصيل",
+      "map": "الخريطة",
+      "duration": "المدة",
+      "date": "نطاق التاريخ",
+      "rating": "التقييم"
+    },
+    "upload": {
+      "title": "رفع إعادة جديدة",
+      "selectFile": "اختر ملف الإعادة",
+      "replayTitle": "عنوان الإعادة",
+      "description": "الوصف",
+      "players": "اللاعبون",
+      "map": "الخريطة",
+      "faction": "فصيلك",
+      "tags": "العلامات",
+      "submit": "رفع الإعادة",
+      "fileTypes": "المدعوم: ملفات .rep, .rec",
+      "maxSize": "أقصى حجم ملف: 10 ميجابايت"
+    },
+    "stats": {
+      "totalReplays": "إجمالي الإعادات",
+      "totalDownloads": "إجمالي التحميلات",
+      "todayUploads": "رفعات اليوم",
+      "popularMaps": "الخرائط الشائعة"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "مرحباً بك مجدداً",
+      "subtitle": "سجل دخولك إلى حساب ZH-Love",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "rememberMe": "تذكرني",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "signIn": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "signUp": "سجل هنا",
+      "orContinueWith": "أو تابع باستخدام",
+      "google": "متابعة مع جوجل",
+      "discord": "متابعة مع ديسكورد"
+    },
+    "signup": {
+      "title": "انضم إلى ZH-Love",
+      "subtitle": "أنشئ حسابك وانضم إلى المجتمع",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "country": "البلد",
+      "favoriteGame": "نمط اللعب المفضل",
+      "agreeToTerms": "أوافق على شروط الخدمة وسياسة الخصوصية",
+      "createAccount": "إنشاء حساب",
+      "alreadyHaveAccount": "لديك حساب بالفعل؟",
+      "signIn": "سجل دخولك هنا",
+      "benefits": {
+        "title": "انضم إلى المجتمع",
+        "items": [
+          "شارك في البطولات",
+          "تتبع تقدم تصنيفك",
+          "تواصل مع لاعبين آخرين",
+          "احصل على محتوى حصري",
+          "ارفع وشارك الإعادات",
+          "انضم أو أنشئ عشائر"
+        ]
+      }
+    },
+    "validation": {
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح",
+      "passwordRequired": "كلمة المرور مطلوبة",
+      "passwordTooShort": "كلمة المرور يجب أن تكون 8 أحرف على الأقل",
+      "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+      "usernameRequired": "اسم المستخدم مطلوب",
+      "usernameTooShort": "اسم المستخدم يجب أن يكون 3 أحرف على الأقل",
+      "firstNameRequired": "الاسم الأول مطلوب",
+      "agreeToTermsRequired": "يجب الموافقة على الشروط والأحكام"
+    },
+    "errors": {
+      "loginFailed": "بريد إلكتروني أو كلمة مرور غير صحيحة",
+      "signupFailed": "فشل في إنشاء الحساب. يرجى المحاولة مرة أخرى.",
+      "emailExists": "يوجد حساب بهذا البريد الإلكتروني بالفعل",
+      "usernameExists": "اسم المستخدم هذا مستخدم بالفعل"
+    },
+    "success": {
+      "accountCreated": "تم إنشاء الحساب بنجاح! يرجى التحقق من بريدك الإلكتروني لتفعيل حسابك.",
+      "loginSuccess": "مرحباً بك مجدداً في ZH-Love!"
+    }
+  },
+  "common": {
+    "loading": "جاري التحميل...",
+    "error": "حدث خطأ",
+    "success": "تم بنجاح",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "view": "عرض",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "search": "البحث...",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "all": "الكل",
+    "none": "لا شيء",
+    "yes": "نعم",
+    "no": "لا",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "close": "إغلاق",
+    "loadMore": "تحميل المزيد"
+  }
+} 

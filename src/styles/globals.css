@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* CSS Variables for ZH-Love theme */
+@layer base {
+  :root {
+    --background: 0 0% 5.1%; /* #0D0D0D - zh-black */
+    --foreground: 0 0% 69%; /* #B0B0B0 - zh-border */
+    --card: 0 0% 17.3%; /* #2C2C2C - zh-primary */
+    --card-foreground: 0 0% 69%; /* #B0B0B0 */
+    --popover: 0 0% 17.3%; /* #2C2C2C */
+    --popover-foreground: 0 0% 69%; /* #B0B0B0 */
+    --primary: 145 44% 41%; /* #3A9A5B - zh-accent */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 17.3%; /* #2C2C2C */
+    --secondary-foreground: 0 0% 69%;
+    --muted: 0 0% 17.3%; /* #2C2C2C */
+    --muted-foreground: 0 0% 69%;
+    --accent: 145 44% 41%; /* #3A9A5B */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 49% 59%; /* #D85C5C */
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 69%; /* #B0B0B0 */
+    --input: 0 0% 17.3%; /* #2C2C2C */
+    --ring: 145 44% 41%; /* #3A9A5B */
+    --radius: 0.5rem;
+  }
+}
+
+/* Base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    /* Custom ZH-Love background: dark, tech, military-inspired */
+    background-color: #0D0D0D;
+    background-image:
+      linear-gradient(120deg, rgba(44,44,44,0.4) 0%, rgba(13,13,13,0.8) 100%),
+      url('/assets/backgrounds/zh-love-bg.svg');
+    background-size: cover, 600px;
+    background-repeat: repeat, repeat;
+    background-attachment: fixed;
+    background-position: center center, top left;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zh-border rounded-md;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-zh-accent;
+  }
+
+  /* RTL support */
+  [dir="rtl"] {
+    font-family: 'Bahij TheSansArabic', system-ui, sans-serif;
+  }
+
+  [dir="ltr"] {
+    font-family: 'Avenir', 'Inter', system-ui, sans-serif;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl lg:text-3xl;
+  }
+
+  h4 {
+    @apply text-xl lg:text-2xl;
+  }
+
+  h5 {
+    @apply text-lg lg:text-xl;
+  }
+
+  h6 {
+    @apply text-base lg:text-lg;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .zh-button-primary {
+    @apply bg-zh-accent hover:bg-zh-accent/90 text-white font-medium px-4 py-2 rounded-md transition-colors;
+  }
+
+  .zh-button-secondary {
+    @apply bg-zh-secondary hover:bg-zh-secondary/80 text-white font-medium px-4 py-2 rounded-md transition-colors border border-zh-border;
+  }
+
+  .zh-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-sm;
+  }
+
+  .zh-input {
+    @apply bg-input border border-border rounded-md px-3 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+  }
+
+  .zh-navbar {
+    @apply bg-zh-primary/95 backdrop-blur-sm border-b border-zh-border sticky top-0 z-50;
+  }
+
+  .zh-sidebar {
+    @apply bg-zh-primary border-r border-zh-border h-full;
+  }
+
+  .zh-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.3s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+
+  /* Gaming-specific styles */
+  .zh-tournament-card {
+    @apply zh-card hover:border-zh-accent transition-all duration-300 cursor-pointer group;
+  }
+
+  .zh-tournament-card:hover {
+    @apply shadow-lg shadow-zh-accent/10;
+  }
+
+  .zh-stat-widget {
+    @apply zh-card bg-gradient-to-br from-zh-primary to-zh-secondary;
+  }
+
+  .zh-feature-block {
+    @apply zh-card hover:bg-zh-secondary/50 transition-colors duration-300;
+  }
+
+  /* Forum styles */
+  .zh-forum-post {
+    @apply zh-card space-y-4;
+  }
+
+  .zh-forum-meta {
+    @apply flex items-center gap-2 text-sm text-muted-foreground;
+  }
+
+  /* Profile styles */
+  .zh-profile-badge {
+    @apply inline-flex items-center gap-1 px-2 py-1 bg-zh-accent text-xs font-medium rounded-full;
+  }
+
+  /* Responsive text */
+  .zh-responsive-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(90deg, #281B39, #1D1834, #281B39) 1;
+  }
+
+  /* RTL/LTR specific utilities */
+  .rtl\:text-right[dir="rtl"] {
+    text-align: right;
+  }
+
+  .rtl\:text-left[dir="rtl"] {
+    text-align: left;
+  }
+
+  .ltr\:text-left[dir="ltr"] {
+    text-align: left;
+  }
+
+  .ltr\:text-right[dir="ltr"] {
+    text-align: right;
+  }
+
+  /* Gaming-specific utilities */
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(58, 154, 91, 0.3);
+  }
+
+  .glow-effect:hover {
+    box-shadow: 0 0 30px rgba(58, 154, 91, 0.5);
+  }
+} 
