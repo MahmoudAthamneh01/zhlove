@@ -16,7 +16,7 @@ export default function WarRoomClient() {
         <div className="pointer-events-none absolute inset-0 z-10">
           <div className="w-full h-full animate-fog bg-[url('/assets/fog.png')] bg-repeat opacity-20" />
         </div>
-        </div>
+        
         <div className="zh-container relative z-20">
           <div className="bg-zh-primary/80 backdrop-blur-lg rounded-2xl p-8 border border-zh-accent/30 shadow-xl relative overflow-hidden">
             <div className="flex items-center gap-4 mb-8">
@@ -135,17 +135,17 @@ export default function WarRoomClient() {
               </div>
               <div className="space-y-1 text-sm">
                 <div className="flex items-center gap-2">
-                  <img src={getPlayerAvatar('ChinaCommander')} className="w-7 h-7 rounded-full border border-zh-border" />
+                  <img src={getPlayerAvatar('ChinaCommander')} className="w-7 h-7 rounded-full border border-zh-border" alt="ChinaCommander" />
                   <span className="text-zh-accent font-bold">ChinaCommander:</span>
                   <span className="text-white">GLA rush incoming, get ready!</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src={getPlayerAvatar('DesertCommander')} className="w-7 h-7 rounded-full border border-zh-border" />
+                  <img src={getPlayerAvatar('DesertCommander')} className="w-7 h-7 rounded-full border border-zh-border" alt="DesertCommander" />
                   <span className="text-zh-gold font-bold">DesertCommander:</span>
                   <span className="text-white">Hold the left flank!</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <img src={getPlayerAvatar('RedDragon')} className="w-7 h-7 rounded-full border border-zh-border" />
+                  <img src={getPlayerAvatar('RedDragon')} className="w-7 h-7 rounded-full border border-zh-border" alt="RedDragon" />
                   <span className="text-zh-accent font-bold">RedDragon:</span>
                   <span className="text-white">Copy that, moving units.</span>
                 </div>

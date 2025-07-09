@@ -2,31 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font imports */
+/* Font imports - using system fonts for better performance */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* CSS Variables for ZH-Love theme */
 @layer base {
   :root {
-    --background: 0 0% 5.1%; /* #0D0D0D - zh-black */
-    --foreground: 0 0% 69%; /* #B0B0B0 - zh-border */
-    --card: 0 0% 17.3%; /* #2C2C2C - zh-primary */
-    --card-foreground: 0 0% 69%; /* #B0B0B0 */
-    --popover: 0 0% 17.3%; /* #2C2C2C */
-    --popover-foreground: 0 0% 69%; /* #B0B0B0 */
-    --primary: 145 44% 41%; /* #3A9A5B - zh-accent */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 69%;
+    --card: 0 0% 17%;
+    --card-foreground: 0 0% 69%;
+    --popover: 0 0% 17%;
+    --popover-foreground: 0 0% 69%;
+    --primary: 145 44% 41%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 17.3%; /* #2C2C2C */
+    --secondary: 0 0% 17%;
     --secondary-foreground: 0 0% 69%;
-    --muted: 0 0% 17.3%; /* #2C2C2C */
+    --muted: 0 0% 17%;
     --muted-foreground: 0 0% 69%;
-    --accent: 145 44% 41%; /* #3A9A5B */
+    --accent: 145 44% 41%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 49% 59%; /* #D85C5C */
+    --destructive: 0 49% 59%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 69%; /* #B0B0B0 */
-    --input: 0 0% 17.3%; /* #2C2C2C */
-    --ring: 145 44% 41%; /* #3A9A5B */
+    --border: 0 0% 69%;
+    --input: 0 0% 17%;
+    --ring: 145 44% 41%;
     --radius: 0.5rem;
   }
 }
@@ -40,15 +40,13 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    /* Custom ZH-Love background: dark, tech, military-inspired */
     background-color: #0D0D0D;
-    background-image:
-      linear-gradient(120deg, rgba(44,44,44,0.4) 0%, rgba(13,13,13,0.8) 100%),
-      url('/assets/backgrounds/zh-love-bg.svg');
-    background-size: cover, 600px;
-    background-repeat: repeat, repeat;
+    background-image: 
+      linear-gradient(120deg, rgba(44,44,44,0.4) 0%, rgba(13,13,13,0.8) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center center, top left;
+    background-position: center center;
   }
 
   /* Scrollbar styling */
@@ -214,12 +212,12 @@
     text-align: right;
   }
 
-  /* Gaming-specific utilities */
+  /* Special effects */
   .glow-effect {
-    box-shadow: 0 0 20px rgba(58, 154, 91, 0.3);
+    box-shadow: 0 0 20px rgba(50, 205, 50, 0.3);
   }
 
   .glow-effect:hover {
-    box-shadow: 0 0 30px rgba(58, 154, 91, 0.5);
+    box-shadow: 0 0 30px rgba(50, 205, 50, 0.5);
   }
 } 

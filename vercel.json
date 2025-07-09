@@ -1,13 +1,39 @@
 {
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": ".next",
   "framework": "nextjs",
-  "buildCommand": "npm install && npx prisma generate && npm run build",
-  "installCommand": "npm ci --ignore-scripts",
+  "nodejs": "18.x",
+  "env": {
+    "NEXTAUTH_URL": "https://zh-love.vercel.app",
+    "NEXTAUTH_SECRET": "@nextauth_secret"
+  },
+  "build": {
+    "env": {
+      "SKIP_ENV_VALIDATION": "1"
+    }
+  },
   "functions": {
-    "app/api/**/*.ts": {
+    "src/app/api/**/*.ts": {
       "maxDuration": 30
     }
   },
-  "env": {
-    "SKIP_ENV_VALIDATION": "true"
-  }
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
 } 

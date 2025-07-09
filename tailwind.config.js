@@ -1,13 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  prefix: '',
+  darkMode: 'class',
   theme: {
     container: {
       center: true,
@@ -51,15 +47,14 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // ZH-Love specific colors
-        'zh-black': '#0A0A0A',        // Darker Black Steel
-        'zh-primary': '#2C2C2C',      // Gunmetal Gray
-        'zh-secondary': '#1C1C1C',    // Darker containers
-        'zh-border': '#B0B0B0',       // Neutral Silver
-        'zh-accent': '#32CD32',       // Brighter Tactical Green (Lime Green)
-        'zh-gold': '#FFD700',         // Brighter Victory Gold
-        'zh-red': '#FF4136',          // Brighter Alert Red
-        'zh-blue': '#0074D9',         // Brighter Command Blue
+        'zh-black': '#0A0A0A',
+        'zh-primary': '#2C2C2C',
+        'zh-secondary': '#1C1C1C',
+        'zh-border': '#B0B0B0',
+        'zh-accent': '#32CD32',
+        'zh-gold': '#FFD700',
+        'zh-red': '#FF4136',
+        'zh-blue': '#0074D9',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -67,9 +62,9 @@ module.exports = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        'arabic': ['Bahij TheSansArabic', 'system-ui', 'sans-serif'],
-        'english': ['Avenir', 'system-ui', 'sans-serif'],
-        'sans': ['Avenir', 'system-ui', 'sans-serif'],
+        arabic: ['Bahij TheSansArabic', 'system-ui', 'sans-serif'],
+        english: ['Avenir', 'system-ui', 'sans-serif'],
+        sans: ['Avenir', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
