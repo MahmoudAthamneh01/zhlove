@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -22,43 +22,28 @@ export default function LoginPage({ params: { locale } }: LoginPageProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   
   const router = useRouter();
   const t = useTranslations();
-  const { data: session } = useSession();
+  const { login, loading, error, isAuthenticated, clearError } = useAuth();
 
   // Redirect if already logged in
   useEffect(() => {
-    if (session) {
+    if (isAuthenticated) {
       router.push(`/${locale}`);
     }
-  }, [session, router, locale]);
+  }, [isAuthenticated, router, locale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    setError('');
+    clearError();
 
-    try {
-      const result = await signIn('credentials', {
-        email,
-        password,
-        redirect: false,
-      });
-
-      if (result?.error) {
-        setError('Invalid email or password');
-      } else {
-        // Redirect to home with current locale
-        router.push(`/${locale}`);
-        router.refresh();
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
+    const success = await login({ email, password });
+    
+    if (success) {
+      // Redirect to home with current locale
+      router.push(`/${locale}`);
+      router.refresh();
     }
   };
 
@@ -98,7 +83,7 @@ export default function LoginPage({ params: { locale } }: LoginPageProps) {
                       onChange={(e) => setEmail(e.target.value)}
                       className="pl-12"
                       required
-                      disabled={isLoading}
+                      disabled={loading}
                     />
                   </div>
                   
@@ -111,13 +96,13 @@ export default function LoginPage({ params: { locale } }: LoginPageProps) {
                       onChange={(e) => setPassword(e.target.value)}
                       className="pl-12 pr-12"
                       required
-                      disabled={isLoading}
+                      disabled={loading}
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zh-border hover:text-zh-accent transition-colors"
-                      disabled={isLoading}
+                      disabled={loading}
                     >
                       {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
@@ -128,9 +113,9 @@ export default function LoginPage({ params: { locale } }: LoginPageProps) {
                   type="submit" 
                   className="w-full" 
                   variant="gaming"
-                  disabled={isLoading}
+                  disabled={loading}
                 >
-                  {isLoading ? (
+                  {loading ? (
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                       {t('auth.login.signingIn', { default: 'Signing In...' })}

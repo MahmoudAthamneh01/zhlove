@@ -218,6 +218,11 @@ const mockClans = [
   },
 ];
 
+export function generateStaticParams() {
+  // توليد جميع معرفات العشائر الموجودة في mockClans
+  return mockClans.map((clan) => ({ clanId: clan.id }));
+}
+
 function formatDate(dateString: string) {
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',

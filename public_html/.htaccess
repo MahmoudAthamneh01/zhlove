@@ -1,0 +1,80 @@
+RewriteEngine On
+
+# Force HTTPS (if available)
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# API Routes - Redirect to PHP endpoints
+RewriteRule ^api/auth/register/?$ api/auth/register.php [L]
+RewriteRule ^api/auth/login/?$ api/auth/login.php [L]
+RewriteRule ^api/auth/logout/?$ api/auth/logout.php [L]
+RewriteRule ^api/auth/session/?$ api/auth/session.php [L]
+
+RewriteRule ^api/users/?$ api/users/index.php [L]
+RewriteRule ^api/users/profile/?$ api/users/profile.php [L]
+
+RewriteRule ^api/messages/?$ api/messages/index.php [L]
+RewriteRule ^api/notifications/?$ api/notifications/index.php [L]
+
+RewriteRule ^api/forum/posts/?$ api/forum/posts/index.php [L]
+RewriteRule ^api/forum/posts/like/?$ api/forum/posts/like.php [L]
+RewriteRule ^api/forum/stats/?$ api/forum/stats/index.php [L]
+
+RewriteRule ^api/tournaments/?$ api/tournaments/index.php [L]
+RewriteRule ^api/tournaments/register/?$ api/tournaments/register.php [L]
+
+RewriteRule ^api/clans/?$ api/clans/index.php [L]
+RewriteRule ^api/stats/?$ api/stats/index.php [L]
+
+# Handle Next.js style routing for static site
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L]
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Cache optimization
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType application/json "access plus 1 hour"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# Prevent access to sensitive files
+<Files "*.env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "\.(sql|log|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# PHP Settings for API
+<IfModule mod_php.c>
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 60
+    php_value memory_limit 256M
+</IfModule>

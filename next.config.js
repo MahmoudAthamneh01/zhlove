@@ -4,7 +4,10 @@ const withNextIntl = require('next-intl/plugin')(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     domains: ['localhost'],
     remotePatterns: [
       {
@@ -13,7 +16,8 @@ const nextConfig = {
       },
     ],
   },
-  // Optimize build for Vercel
+  assetPrefix: '', // ✅ احذف التوجيه الثابت
+
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -23,13 +27,11 @@ const nextConfig = {
     }
     return config;
   },
-  // Ensure consistent module resolution
+
   transpilePackages: ['next-intl'],
-  // Optimize for production
-  trailingSlash: false,
   poweredByHeader: false,
   compress: true,
   generateEtags: true,
-}
+};
 
-module.exports = withNextIntl(nextConfig); 
+module.exports = withNextIntl(nextConfig);

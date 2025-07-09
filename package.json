@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "next build",
+    "build:hostinger": "node build-for-hostinger.js",
+    "build:vercel": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "db:seed": "tsx prisma/seed.ts",
-    "vercel-build": "prisma generate && next build",
-    "postinstall": "prisma generate"
+    "postinstall": "echo 'Ready for Hostinger deployment'"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

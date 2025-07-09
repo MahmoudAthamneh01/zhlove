@@ -1,11 +1,8 @@
 import { NextAuthOptions } from 'next-auth'
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import bcrypt from 'bcryptjs'
-import { prisma } from './prisma'
+import { apiRequest, API_CONFIG } from './api-config'
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   secret: process.env.NEXTAUTH_SECRET || 'zh-love-super-secret-key-2024-change-in-production',
   providers: [
     CredentialsProvider({
@@ -19,47 +16,38 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email
+        try {
+          // Call PHP backend for authentication
+          const response = await apiRequest(API_CONFIG.endpoints.auth.login, {
+            method: 'POST',
+            body: JSON.stringify({
+              email: credentials.email,
+              password: credentials.password
+            })
+          })
+
+          if (response.success && response.user) {
+            const user = response.user
+            return {
+              id: user.id,
+              email: user.email,
+              name: user.name || user.username,
+              username: user.username,
+              image: user.image,
+              role: user.role,
+              rank: user.rank,
+              points: user.points || 0,
+              wins: user.wins || 0,
+              losses: user.losses || 0,
+              level: user.level || 1,
+              xp: user.xp || 0
+            }
           }
-        })
-
-        if (!user || !user.password) {
+          
           return null
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        )
-
-        if (!isPasswordValid) {
+        } catch (error) {
+          console.error('Authentication error:', error)
           return null
-        }
-
-        // Update last seen
-        await prisma.user.update({
-          where: { id: user.id },
-          data: { 
-            lastSeen: new Date(),
-            status: 'online'
-          }
-        })
-
-        return {
-          id: user.id,
-          email: user.email,
-          name: user.name,
-          username: user.username,
-          image: user.image,
-          role: user.role,
-          rank: user.rank,
-          points: user.points,
-          wins: user.wins,
-          losses: user.losses,
-          level: user.level,
-          xp: user.xp
         }
       }
     })
