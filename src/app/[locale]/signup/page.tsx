@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { useState, useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { MainLayout } from '@/components/layout/main-layout';
@@ -11,8 +11,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AnimatedBackground } from '@/components/ui/animated-background';
 import { UserPlus, Lock, Mail, User, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import { setRequestLocale } from 'next-intl/server';
 
-export default function SignupPage() {
+interface SignupPageProps {
+  params: { locale: string };
+}
+
+export default function SignupPage({ params: { locale } }: SignupPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,7 +38,6 @@ export default function SignupPage() {
   
   const router = useRouter();
   const params = useParams();
-  const locale = params.locale as string;
   const t = useTranslations();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

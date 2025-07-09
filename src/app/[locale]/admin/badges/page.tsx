@@ -5,23 +5,35 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Award, Plus, Edit, Trash2, Users } from 'lucide-react';
+import { Award, Plus, Edit, Trash2, Search, Filter, Users } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 interface BadgeType {
   id: string;
   name: string;
+  nameAr: string;
   description: string;
+  descriptionAr: string;
   icon: string;
   color: string;
   type: string;
+  requirement: string;
   isActive: boolean;
   createdAt: string;
   _count: {
-    userBadges: number;
+    users: number;
   };
 }
 
-export default function BadgeManagementPage() {
+interface BadgeManagementPageProps {
+  params: { locale: string };
+}
+
+export default function BadgeManagementPage({ params: { locale } }: BadgeManagementPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
   const [badges, setBadges] = useState<BadgeType[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -170,7 +182,7 @@ export default function BadgeManagementPage() {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-1 text-sm text-zh-border">
                   <Users className="h-4 w-4" />
-                  {badge._count.userBadges} users have this badge
+                  {badge._count.users} users have this badge
                 </div>
               </div>
               

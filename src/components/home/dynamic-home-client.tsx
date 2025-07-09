@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
 import { MainLayout } from '@/components/layout/main-layout';
 import { Button } from '@/components/ui/button';
 import { AnimatedBackground } from '@/components/ui/animated-background';
@@ -75,6 +74,11 @@ interface Stats {
   };
 }
 
+interface DynamicHomePageClientProps {
+  translations: Record<string, string>;
+  locale: string;
+}
+
 function formatNumber(num: number): string {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(1) + 'M';
@@ -84,9 +88,7 @@ function formatNumber(num: number): string {
   return num.toString();
 }
 
-export default function DynamicHomePageClient() {
-  const t = useTranslations();
-  const locale = useLocale();
+export default function DynamicHomePageClient({ translations, locale }: DynamicHomePageClientProps) {
   const [homeConfig, setHomeConfig] = useState<HomePageConfig | null>(null);
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
@@ -166,7 +168,7 @@ export default function DynamicHomePageClient() {
                     style={{ backgroundColor: section.settings.buttonColor }}
                   >
                     <Zap className="mr-2 h-5 w-5" />
-                    {t('home.hero.joinNow')}
+                    {translations['home.hero.joinNow']}
                   </Button>
                 </motion.div>
                 
@@ -177,7 +179,7 @@ export default function DynamicHomePageClient() {
                     className="min-w-[200px] text-lg border-white text-white hover:bg-white hover:text-black"
                   >
                     <MessageSquare className="mr-2 h-5 w-5" />
-                    {t('home.hero.learnMore')}
+                    {translations['home.hero.learnMore']}
                   </Button>
                 </motion.div>
               </div>
@@ -198,28 +200,28 @@ export default function DynamicHomePageClient() {
       { 
         icon: Users, 
         value: formatNumber(stats.overview.totalUsers), 
-        label: t('home.stats.totalMembers'), 
+        label: translations['home.stats.totalMembers'], 
         trend: stats.activity.newUsersToday > 0 ? `+${stats.activity.newUsersToday}` : '0', 
         color: 'text-zh-accent' 
       },
       { 
         icon: Trophy, 
         value: stats.overview.activeTournaments.toString(), 
-        label: t('home.stats.activeTournaments'), 
+        label: translations['home.stats.activeTournaments'], 
         trend: stats.activity.newTournamentsToday > 0 ? `+${stats.activity.newTournamentsToday}` : '0', 
         color: 'text-zh-gold' 
       },
       { 
         icon: MessageSquare, 
         value: formatNumber(stats.overview.totalForumPosts), 
-        label: t('home.stats.forumPosts'), 
+        label: translations['home.stats.forumPosts'], 
         trend: stats.activity.newPostsToday > 0 ? `+${stats.activity.newPostsToday}` : '0', 
         color: 'text-zh-blue' 
       },
       { 
         icon: Gamepad2, 
         value: stats.overview.onlineUsers.toString(), 
-        label: t('home.stats.onlinePlayers'), 
+        label: translations['home.stats.onlinePlayers'], 
         trend: 'LIVE', 
         color: 'text-zh-red' 
       }
@@ -287,36 +289,36 @@ export default function DynamicHomePageClient() {
     const features = [
       {
         icon: Swords,
-        title: t('home.features.clans.title'),
-        description: t('home.features.clans.description'),
-        action: t('home.features.clans.action'),
+        title: translations['home.features.clans.title'],
+        description: translations['home.features.clans.description'],
+        action: translations['home.features.clans.action'],
         href: '/clans',
         color: 'from-zh-red to-red-800',
         glowColor: '#D85C5C'
       },
       {
         icon: Target,
-        title: t('home.features.rankings.title'),
-        description: t('home.features.rankings.description'),
-        action: t('home.features.rankings.action'),
+        title: translations['home.features.rankings.title'],
+        description: translations['home.features.rankings.description'],
+        action: translations['home.features.rankings.action'],
         href: '/rankings',
         color: 'from-zh-accent to-green-700',
         glowColor: '#3A9A5B'
       },
       {
         icon: MessageSquare,
-        title: t('home.features.forum.title'),
-        description: t('home.features.forum.description'),
-        action: t('home.features.forum.action'),
+        title: translations['home.features.forum.title'],
+        description: translations['home.features.forum.description'],
+        action: translations['home.features.forum.action'],
         href: '/forum',
         color: 'from-zh-blue to-blue-700',
         glowColor: '#326DA8'
       },
       {
         icon: Trophy,
-        title: t('home.features.tournaments.title'),
-        description: t('home.features.tournaments.description'),
-        action: t('home.features.tournaments.action'),
+        title: translations['home.features.tournaments.title'],
+        description: translations['home.features.tournaments.description'],
+        action: translations['home.features.tournaments.action'],
         href: '/tournaments',
         color: 'from-zh-gold to-yellow-600',
         glowColor: '#F2C94C'
@@ -442,7 +444,7 @@ export default function DynamicHomePageClient() {
                 style={{ backgroundColor: section.settings.buttonColor }}
               >
                 <Crown className="mr-2 h-5 w-5" />
-                {t('home.cta.register')}
+                {translations['home.cta.register']}
               </Button>
               
               <Button 
@@ -451,7 +453,7 @@ export default function DynamicHomePageClient() {
                 className="min-w-[200px] border-white text-white hover:bg-white hover:text-black"
               >
                 <Shield className="mr-2 h-5 w-5" />
-                {t('home.cta.learn')}
+                {translations['home.cta.learn']}
               </Button>
             </div>
           </motion.div>
@@ -520,7 +522,7 @@ export default function DynamicHomePageClient() {
         <div className="min-h-screen bg-zh-background flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-zh-accent mx-auto mb-4"></div>
-            <p className="text-zh-border">{t('common.loading')}</p>
+            <p className="text-zh-border">{translations['common.loading']}</p>
           </div>
         </div>
       </MainLayout>
@@ -549,10 +551,10 @@ export default function DynamicHomePageClient() {
           <div className="min-h-screen flex items-center justify-center">
             <div className="zh-container text-center">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-zh-accent to-zh-gold bg-clip-text text-transparent">
-                {t('home.hero.title')}
+                {translations['home.hero.title']}
               </h1>
               <p className="text-xl md:text-2xl text-zh-border mb-8 max-w-3xl mx-auto">
-                {t('home.hero.subtitle')}
+                {translations['home.hero.subtitle']}
               </p>
             </div>
           </div>

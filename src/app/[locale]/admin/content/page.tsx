@@ -16,6 +16,7 @@ import {
   XCircle,
   AlertTriangle
 } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 interface ForumPost {
   id: string;
@@ -60,7 +61,18 @@ interface Report {
   };
 }
 
-export default function ContentModerationPage() {
+interface ContentManagementPageProps {
+  params: {
+    locale: string;
+  };
+}
+
+export default function ContentModerationPage({ params: { locale } }: ContentManagementPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const [activeTab, setActiveTab] = useState<'posts' | 'reports'>('posts');
   const [posts, setPosts] = useState<ForumPost[]>([]);
   const [reports, setReports] = useState<Report[]>([]);

@@ -1,18 +1,30 @@
 'use client';
 
-import { useState } from 'react';
-import { signIn, getSession } from 'next-auth/react';
-import { useRouter, useParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { MainLayout } from '@/components/layout/main-layout';
+import { useState, useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
+import { useTranslations } from 'next-intl';
+import { MainLayout } from '@/components/layout/main-layout';
 import { AnimatedBackground } from '@/components/ui/animated-background';
-import { User, Lock, Mail, Eye, EyeOff, AlertCircle } from 'lucide-react';
-import Link from 'next/link';
+import { User, Lock, Mail, AlertCircle } from 'lucide-react';
 
-export default function LoginPage() {
+interface LoginPageProps {
+  params: { locale: string };
+}
+
+export default function LoginPage({ params: { locale } }: LoginPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -20,8 +32,6 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   
   const router = useRouter();
-  const params = useParams();
-  const locale = params.locale as string;
   const t = useTranslations();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -40,7 +50,7 @@ export default function LoginPage() {
         setError('Invalid email or password');
       } else {
         // Get the session to confirm login
-        const session = await getSession();
+        const session = await useSession();
         if (session) {
           // Redirect to home with current locale
           router.push(`/${locale}`);

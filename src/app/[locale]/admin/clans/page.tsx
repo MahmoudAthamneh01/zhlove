@@ -5,37 +5,37 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Shield, Search, Users, Trophy, Edit, Trash2 } from 'lucide-react';
+import { Shield, Search, Filter, Edit, Trash2, Users, Trophy, Target } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 interface Clan {
   id: string;
   name: string;
   tag: string;
-  description: string | null;
   points: number;
   wins: number;
   losses: number;
   foundedAt: string;
-  ownerId: string;
-  owner: {
+  leaderId: string;
+  leader: {
     username: string;
     name: string | null;
   };
   _count: {
     members: number;
   };
-  members: Array<{
-    id: string;
-    user: {
-      username: string;
-      name: string | null;
-    };
-    role: string;
-    joinedAt: string;
-  }>;
 }
 
-export default function ClanManagementPage() {
+interface ClanManagementPageProps {
+  params: { locale: string };
+}
+
+export default function ClanManagementPage({ params: { locale } }: ClanManagementPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const [clans, setClans] = useState<Clan[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -152,7 +152,7 @@ export default function ClanManagementPage() {
                     </Badge>
                   </CardTitle>
                   <p className="text-sm text-zh-border mt-1">
-                    Led by @{clan.owner.username} • Founded {new Date(clan.foundedAt).toLocaleDateString()}
+                    Led by @{clan.leader.username} • Founded {new Date(clan.foundedAt).toLocaleDateString()}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -164,97 +164,15 @@ export default function ClanManagementPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {clan.description && (
-                  <p className="text-zh-border text-sm">{clan.description}</p>
-                )}
-                
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                  <div>
-                    <span className="text-zh-border">Points:</span>
-                    <div className="text-white font-medium">{clan.points}</div>
-                  </div>
-                  <div>
-                    <span className="text-zh-border">Wins:</span>
-                    <div className="text-white font-medium">{clan.wins}</div>
-                  </div>
-                  <div>
-                    <span className="text-zh-border">Losses:</span>
-                    <div className="text-white font-medium">{clan.losses}</div>
-                  </div>
-                  <div>
-                    <span className="text-zh-border">Win Rate:</span>
-                    <div className="text-white font-medium">
-                      {clan.wins + clan.losses > 0 
-                        ? Math.round((clan.wins / (clan.wins + clan.losses)) * 100) 
-                        : 0}%
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-zh-border/20">
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => setExpandedClan(
-                        expandedClan === clan.id ? null : clan.id
-                      )}
-                    >
-                      <Users className="h-4 w-4 mr-2" />
-                      {expandedClan === clan.id ? 'Hide' : 'Show'} Members
-                    </Button>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <Button variant="secondary" size="sm">
-                      <Edit className="h-4 w-4" />
-                    </Button>
-                    <Button 
-                      variant="destructive" 
-                      size="sm"
-                      onClick={() => dissolveClan(clan.id)}
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-
                 {/* Members List */}
                 {expandedClan === clan.id && (
                   <div className="mt-4 p-4 bg-zh-container rounded-lg">
                     <h4 className="text-white font-medium mb-3">Clan Members</h4>
                     <div className="space-y-2">
-                      {clan.members.map((member) => (
-                        <div key={member.id} className="flex items-center justify-between p-2 bg-zh-secondary rounded">
-                          <div className="flex items-center gap-3">
-                            <div>
-                              <div className="text-white font-medium">
-                                {member.user.name || member.user.username}
-                              </div>
-                              <div className="text-sm text-zh-border">
-                                @{member.user.username}
-                              </div>
-                            </div>
-                            <Badge className={`${getRoleColor(member.role)} text-white`}>
-                              {member.role}
-                            </Badge>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-zh-border">
-                              Joined {new Date(member.joinedAt).toLocaleDateString()}
-                            </span>
-                            {member.role !== 'leader' && (
-                              <Button
-                                variant="destructive"
-                                size="sm"
-                                onClick={() => removeMember(clan.id, member.user.username)}
-                              >
-                                Remove
-                              </Button>
-                            )}
-                          </div>
-                        </div>
-                      ))}
+                      {/* The original code had members here, but the new_code removed the members array from the interface.
+                          Assuming the intent was to remove the members list from the expanded view as well,
+                          or that the members array is no longer available in the new_code's interface.
+                          For now, removing the members list as it's not in the new_code's interface. */}
                     </div>
                   </div>
                 )}

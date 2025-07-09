@@ -8,8 +8,18 @@ import { MainLayout } from '@/components/layout/main-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, MessageSquare, Trophy, Shield, Activity, Award, Home, Edit } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
-export default function AdminPage() {
+interface AdminPageProps {
+  params: { locale: string };
+}
+
+export default function AdminPage({ params: { locale } }: AdminPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const { data: session, status } = useSession();
   const router = useRouter();
   const [stats, setStats] = useState({

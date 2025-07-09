@@ -17,6 +17,7 @@ import {
   Shield,
   User
 } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 interface User {
   id: string;
@@ -34,7 +35,16 @@ interface User {
   isModerator: boolean;
 }
 
-export default function UserManagementPage() {
+interface UserManagementPageProps {
+  params: { locale: string };
+}
+
+export default function UserManagementPage({ params: { locale } }: UserManagementPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');

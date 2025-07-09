@@ -36,6 +36,7 @@ import {
   Monitor,
   RefreshCw
 } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 interface HomeSection {
   id: string;
@@ -109,6 +110,11 @@ const sectionTypes = [
 ];
 
 export default function HomePageCMS() {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(useLocale());
+  }
+
   const [config, setConfig] = useState<HomePageConfig | null>(null);
   const [selectedSection, setSelectedSection] = useState<HomeSection | null>(null);
   const [isEditing, setIsEditing] = useState(false);

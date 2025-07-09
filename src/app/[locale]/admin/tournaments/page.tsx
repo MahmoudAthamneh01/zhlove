@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Trophy, Plus, Edit, Trash2, Users, Calendar } from 'lucide-react';
+import { Trophy, Plus, Edit, Trash2, Search, Filter, Calendar, Users } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
 
 interface Tournament {
   id: string;
@@ -14,12 +15,11 @@ interface Tournament {
   type: string;
   status: string;
   maxParticipants: number;
-  prizePool: string | null;
+  prizePool: string;
   startDate: string;
-  endDate: string | null;
+  endDate: string;
   createdAt: string;
-  organizerId: string;
-  organizer: {
+  host: {
     username: string;
     name: string | null;
   };
@@ -28,7 +28,16 @@ interface Tournament {
   };
 }
 
-export default function TournamentManagementPage() {
+interface TournamentManagementPageProps {
+  params: { locale: string };
+}
+
+export default function TournamentManagementPage({ params: { locale } }: TournamentManagementPageProps) {
+  // Enable static rendering for this page
+  if (typeof window === 'undefined') {
+    setRequestLocale(locale);
+  }
+
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [loading, setLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -155,7 +164,7 @@ export default function TournamentManagementPage() {
                     {tournament.title}
                   </CardTitle>
                   <p className="text-sm text-zh-border mt-1">
-                    Organized by @{tournament.organizer.username}
+                    Organized by @{tournament.host.username}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
