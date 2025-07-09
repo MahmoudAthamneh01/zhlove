@@ -1,24 +1,30 @@
 #!/bin/bash
 
-# Exit on any error
+# Exit on error
 set -e
 
-echo "🚀 Starting ZH-Love build process..."
+echo "🚀 Starting frontend build process..."
 
-# Clean up any existing build artifacts
-echo "🧹 Cleaning up build artifacts..."
-rm -rf .next
-rm -rf node_modules/.cache
+# Clean previous builds
+echo "🧹 Cleaning previous builds..."
+rm -rf .next out
 
-# Set Node.js memory options
-export NODE_OPTIONS="--max-old-space-size=4096"
+# Install dependencies
+echo "📦 Installing dependencies..."
+npm install
 
-# Generate Prisma client
-echo "🔧 Generating Prisma client..."
-npx prisma generate
+# Build and export static site
+echo "🏗️ Building static site..."
+npm run build:static
 
-# Build Next.js application
-echo "🏗️ Building Next.js application..."
-npx next build
+echo "✅ Build completed! The static site is in the 'out' directory"
+echo "📂 Contents of the out directory:"
+ls -la out/
 
-echo "✅ Build completed successfully!" 
+echo "
+🎉 Frontend build successful! 
+Next steps:
+1. Deploy the 'out' directory to Vercel
+2. Set the following environment variables in Vercel:
+   - NEXT_PUBLIC_API_URL=https://your-api-domain.com/api
+" 

@@ -1,20 +1,13 @@
 {
   "buildCommand": "npm install && npm run build",
-  "outputDirectory": ".next",
+  "outputDirectory": "out",
   "framework": "nextjs",
   "env": {
-    "NEXTAUTH_URL": "https://zh-love.vercel.app",
-    "NEXTAUTH_SECRET": "@nextauth_secret",
     "NEXT_PUBLIC_API_URL": "https://zh-love.vercel.app/api"
   },
   "build": {
     "env": {
       "SKIP_ENV_VALIDATION": "1"
-    }
-  },
-  "functions": {
-    "src/app/api/**/*.ts": {
-      "maxDuration": 30
     }
   },
   "headers": [
@@ -32,6 +25,10 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }
