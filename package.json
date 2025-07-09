@@ -10,6 +10,7 @@
     "export": "next build && next export",
     "build:static": "next build && next export -o out",
     "build:hostinger": "next build && next export -o public_html",
+    "build:simple": "SKIP_ENV_VALIDATION=true next build && next export -o public_html",
     "clean": "rm -rf .next out public_html",
     "deploy:hostinger": "npm run clean && npm run build:hostinger"
   },

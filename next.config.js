@@ -1,7 +1,3 @@
-const withNextIntl = require('next-intl/plugin')(
-  './src/i18n/request.ts'
-);
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Enable static export for Hostinger deployment
@@ -20,6 +16,11 @@ const nextConfig = {
   },
   assetPrefix: '',
 
+  // Disable static generation for problematic pages
+  experimental: {
+    missingSuspenseWithCSRError: false,
+  },
+
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
@@ -36,4 +37,4 @@ const nextConfig = {
   generateEtags: true,
 };
 
-module.exports = withNextIntl(nextConfig);
+module.exports = nextConfig;

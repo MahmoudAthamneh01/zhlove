@@ -1,9 +1,15 @@
 'use client';
 
-import { NextIntlClientProvider } from 'next-intl';
-import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { locales } from '@/i18n';
+import { useParams } from 'next/navigation';
+
+// Generate static params for all supported locales
+export function generateStaticParams() {
+  return [
+    { locale: 'ar' },
+    { locale: 'en' }
+  ];
+}
 
 export default function LocaleLayout({
   children
@@ -17,9 +23,10 @@ export default function LocaleLayout({
 
   useEffect(() => {
     // Validate that the incoming `locale` parameter is valid
-    if (!locales.includes(locale as any)) {
+    const validLocales = ['ar', 'en'];
+    if (!validLocales.includes(locale)) {
       // Redirect to default locale if invalid
-      window.location.href = '/en/';
+      window.location.href = '/ar/';
       return;
     }
 
@@ -59,12 +66,10 @@ export default function LocaleLayout({
   return (
     <html lang={locale} dir={dir} className="dark">
       <body className="min-h-screen bg-zh-black text-foreground font-sans antialiased">
-        <NextIntlClientProvider messages={messages}>
-          <div className="relative flex min-h-screen flex-col">
-            {children}
-          </div>
-        </NextIntlClientProvider>
+        <div className="relative flex min-h-screen flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );
-} 
+}

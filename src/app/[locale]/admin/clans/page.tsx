@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Shield, Search, Filter, Edit, Trash2, Users, Trophy, Target } from 'lucide-react';
-import { setRequestLocale } from 'next-intl/server';
 
 interface Clan {
   id: string;
@@ -26,16 +25,7 @@ interface Clan {
   };
 }
 
-interface ClanManagementPageProps {
-  params: { locale: string };
-}
-
-export default function ClanManagementPage({ params: { locale } }: ClanManagementPageProps) {
-  // Enable static rendering for this page
-  if (typeof window === 'undefined') {
-    setRequestLocale(locale);
-  }
-
+export default function ClanManagementPage() {
   const [clans, setClans] = useState<Clan[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
