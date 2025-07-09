@@ -1,25 +1,39 @@
+const withNextIntl = require('next-intl/plugin')('./src/i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['@prisma/client', 'prisma']
+    serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
+    appDir: true
   },
-  webpack: (config) => {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      fs: false,
-      net: false,
-      tls: false,
-    };
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        stream: false,
+        url: false,
+        zlib: false,
+        http: false,
+        https: false,
+        assert: false,
+        os: false,
+        path: false,
+      };
+    }
     return config;
   },
   transpilePackages: ['lucide-react'],
   images: {
     domains: ['localhost', 'vercel.app'],
   },
-  env: {
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
   }
 };
 
-module.exports = nextConfig; 
+module.exports = withNextIntl(nextConfig); 

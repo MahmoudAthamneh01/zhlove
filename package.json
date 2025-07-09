@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
-    "build:vercel": "NODE_OPTIONS='--max-old-space-size=4096' prisma generate && NODE_OPTIONS='--max-old-space-size=4096' next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
@@ -46,9 +45,9 @@
     "framer-motion": "^10.16.16",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.302.0",
-    "next": "14.2.15",
+    "next": "13.5.6",
     "next-auth": "^4.24.11",
-    "next-intl": "^3.4.0",
+    "next-intl": "^2.22.1",
     "postcss": "^8.4.32",
     "prisma": "^6.11.1",
     "react": "^18.2.0",
@@ -67,7 +66,7 @@
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.2.15",
+    "eslint-config-next": "13.5.6",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.9",
     "tsx": "^4.20.3"
