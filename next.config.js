@@ -4,7 +4,9 @@ const withNextIntl = require('next-intl/plugin')(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Only enable static export if explicitly requested
+  ...(process.env.STATIC_EXPORT === 'true' && { output: 'export' }),
+  
   trailingSlash: true,
   images: {
     unoptimized: true,
@@ -16,7 +18,7 @@ const nextConfig = {
       },
     ],
   },
-  assetPrefix: '', // ✅ احذف التوجيه الثابت
+  assetPrefix: '',
 
   webpack: (config, { isServer }) => {
     if (!isServer) {

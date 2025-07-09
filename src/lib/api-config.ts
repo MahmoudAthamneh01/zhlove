@@ -1,6 +1,17 @@
 // API Configuration for PHP Backend
+const getApiBaseUrl = () => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  if (!apiUrl) {
+    if (process.env.NODE_ENV === 'development') {
+      return 'http://localhost:3000/api';
+    }
+    throw new Error('NEXT_PUBLIC_API_URL is required in production');
+  }
+  return apiUrl;
+};
+
 export const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_URL || 'https://yourdomain.com/api',
+  baseUrl: getApiBaseUrl(),
   endpoints: {
     // Authentication
     auth: {

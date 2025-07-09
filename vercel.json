@@ -4,7 +4,8 @@
   "framework": "nextjs",
   "env": {
     "NEXTAUTH_URL": "https://zh-love.vercel.app",
-    "NEXTAUTH_SECRET": "@nextauth_secret"
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "NEXT_PUBLIC_API_URL": "https://zh-love.vercel.app/api"
   },
   "build": {
     "env": {

@@ -2,8 +2,20 @@ import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { apiRequest, API_CONFIG } from './api-config'
 
+// Function to get NextAuth secret with secure fallback
+const getNextAuthSecret = () => {
+  const secret = process.env.NEXTAUTH_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('NEXTAUTH_SECRET is required in production. Generate one with: openssl rand -base64 32');
+    }
+    return 'dev-only-secret-do-not-use-in-production';
+  }
+  return secret;
+};
+
 export const authOptions: NextAuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET || 'zh-love-super-secret-key-2024-change-in-production',
+  secret: getNextAuthSecret(),
   providers: [
     CredentialsProvider({
       name: 'credentials',
