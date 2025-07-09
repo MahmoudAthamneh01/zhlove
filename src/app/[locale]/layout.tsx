@@ -1,32 +1,60 @@
+'use client';
+
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { locales } from '@/i18n';
 
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
-export default async function LocaleLayout({
-  children,
-  params: { locale }
+export default function LocaleLayout({
+  children
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
-  // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) {
-    notFound();
-  }
+  const params = useParams();
+  const locale = params.locale as string;
+  const [messages, setMessages] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Enable static rendering
-  setRequestLocale(locale);
+  useEffect(() => {
+    // Validate that the incoming `locale` parameter is valid
+    if (!locales.includes(locale as any)) {
+      // Redirect to default locale if invalid
+      window.location.href = '/en/';
+      return;
+    }
 
-  // Providing all messages to the client side is the easiest way to get started
-  const messages = await getMessages();
+    // Load messages dynamically
+    const loadMessages = async () => {
+      try {
+        const messages = await import(`../../../messages/${locale}.json`);
+        setMessages(messages.default);
+      } catch (error) {
+        console.error('Failed to load messages:', error);
+        // Fallback to English
+        const fallbackMessages = await import(`../../../messages/en.json`);
+        setMessages(fallbackMessages.default);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadMessages();
+  }, [locale]);
 
   // Determine text direction based on locale
   const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
+  if (isLoading) {
+    return (
+      <html lang={locale} dir={dir} className="dark">
+        <body className="min-h-screen bg-zh-black text-foreground font-sans antialiased">
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="text-white">Loading...</div>
+          </div>
+        </body>
+      </html>
+    );
+  }
 
   return (
     <html lang={locale} dir={dir} className="dark">

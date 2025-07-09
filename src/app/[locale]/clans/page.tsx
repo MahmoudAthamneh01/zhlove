@@ -1,14 +1,8 @@
-import { setRequestLocale } from 'next-intl/server';
+'use client';
+
 import ClansClient from './ClansClient';
 
-export default function ClansPage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
-  // Enable static rendering
-  setRequestLocale(locale);
-  
+export default function ClansPage() {
   return <ClansClient />;
 }
 

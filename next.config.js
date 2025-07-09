@@ -4,7 +4,7 @@ const withNextIntl = require('next-intl/plugin')(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static export for frontend-only deployment
+  // Enable static export for Hostinger deployment
   output: 'export',
   
   trailingSlash: true,
@@ -19,11 +19,6 @@ const nextConfig = {
     ],
   },
   assetPrefix: '',
-
-  // Disable server-side features since we're deploying frontend only
-  experimental: {
-    appDir: true,
-  },
 
   webpack: (config, { isServer }) => {
     if (!isServer) {

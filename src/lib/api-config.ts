@@ -1,5 +1,12 @@
-// API Configuration for PHP Backend
+// API Configuration for PHP Backend on Hostinger
 const getApiBaseUrl = () => {
+  // In production, use the same domain for API calls
+  if (typeof window !== 'undefined') {
+    // Client-side: use current origin
+    return `${window.location.origin}/api`;
+  }
+  
+  // Server-side fallback (shouldn't be used in static export)
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   if (!apiUrl) {
     if (process.env.NODE_ENV === 'development') {
@@ -15,42 +22,42 @@ export const API_CONFIG = {
   endpoints: {
     // Authentication
     auth: {
-      register: '/auth/register',
-      login: '/auth/login', 
-      logout: '/auth/logout',
-      session: '/auth/session'
+      register: '/auth/register.php',
+      login: '/auth/login.php', 
+      logout: '/auth/logout.php',
+      session: '/auth/session.php'
     },
     
     // Users
     users: {
-      list: '/users',
-      profile: '/users/profile'
+      list: '/users/index.php',
+      profile: '/users/profile.php'
     },
     
     // Messages
-    messages: '/messages',
+    messages: '/messages/index.php',
     
     // Notifications  
-    notifications: '/notifications',
+    notifications: '/notifications/index.php',
     
     // Forum
     forum: {
-      posts: '/forum/posts',
-      like: '/forum/posts/like',
-      stats: '/forum/stats'
+      posts: '/forum/posts.php',
+      like: '/forum/posts/like.php',
+      stats: '/forum/stats.php'
     },
     
     // Tournaments
     tournaments: {
-      list: '/tournaments',
-      register: '/tournaments/register'
+      list: '/tournaments/index.php',
+      register: '/tournaments/register.php'
     },
     
     // Clans
-    clans: '/clans',
+    clans: '/clans/index.php',
     
     // Statistics
-    stats: '/stats'
+    stats: '/stats/index.php'
   }
 };
 

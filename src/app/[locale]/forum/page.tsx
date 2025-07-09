@@ -1,20 +1,12 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+'use client';
+
+import { useParams } from 'next/navigation';
 import { MainLayout } from '@/components/layout/main-layout';
 import ForumClient from './ForumClient';
 
-// Export static params for all supported locales
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'ar' }];
-}
-
-export default function ForumPage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
-  // Enable static rendering
-  setRequestLocale(locale);
+export default function ForumPage() {
+  const params = useParams();
+  const locale = params.locale as string;
   
   return (
     <MainLayout>

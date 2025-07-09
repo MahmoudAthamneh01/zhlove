@@ -1,4 +1,5 @@
-import { setRequestLocale } from 'next-intl/server';
+'use client';
+
 import { MainLayout } from '@/components/layout/main-layout';
 import { Button } from '@/components/ui/button';
 import { GamingCard } from '@/components/ui/gaming-card';
@@ -15,19 +16,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
-// Export static params for all supported locales
-export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'ar' }];
-}
-
-export default function HomePage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
-  // Enable static rendering
-  setRequestLocale(locale);
-  
+export default function HomePage() {
   return (
     <MainLayout>
       {/* Hero Section */}
