@@ -2,7 +2,6 @@
   "buildCommand": "npm install && npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "nodejs": "18.x",
   "env": {
     "NEXTAUTH_URL": "https://zh-love.vercel.app",
     "NEXTAUTH_SECRET": "@nextauth_secret"
