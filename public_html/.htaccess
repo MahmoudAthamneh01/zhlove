@@ -1,80 +1,80 @@
+# Frontend Routing for Next.js Static Export
 RewriteEngine On
 
-# Force HTTPS (if available)
+# Force HTTPS
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# API Routes - Redirect to PHP endpoints
-RewriteRule ^api/auth/register/?$ api/auth/register.php [L]
-RewriteRule ^api/auth/login/?$ api/auth/login.php [L]
-RewriteRule ^api/auth/logout/?$ api/auth/logout.php [L]
-RewriteRule ^api/auth/session/?$ api/auth/session.php [L]
+# API routes - redirect to api folder
+RewriteRule ^api/(.*)$ /api/$1 [L]
 
-RewriteRule ^api/users/?$ api/users/index.php [L]
-RewriteRule ^api/users/profile/?$ api/users/profile.php [L]
+# Handle Next.js static files
+RewriteRule ^_next/(.*)$ /_next/$1 [L]
 
-RewriteRule ^api/messages/?$ api/messages/index.php [L]
-RewriteRule ^api/notifications/?$ api/notifications/index.php [L]
+# Handle locale routing
+RewriteRule ^(en|ar)/(.*)$ /$2 [E=LOCALE:$1,L]
 
-RewriteRule ^api/forum/posts/?$ api/forum/posts/index.php [L]
-RewriteRule ^api/forum/posts/like/?$ api/forum/posts/like.php [L]
-RewriteRule ^api/forum/stats/?$ api/forum/stats/index.php [L]
+# Default locale redirect
+RewriteRule ^$ /en/ [R=302,L]
 
-RewriteRule ^api/tournaments/?$ api/tournaments/index.php [L]
-RewriteRule ^api/tournaments/register/?$ api/tournaments/register.php [L]
-
-RewriteRule ^api/clans/?$ api/clans/index.php [L]
-RewriteRule ^api/stats/?$ api/stats/index.php [L]
-
-# Handle Next.js style routing for static site
+# Fallback for client-side routing (SPA)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.html [L]
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteRule ^(.*)$ /index.html [L]
 
-# Security Headers
+# Security headers
 <IfModule mod_headers.c>
     Header always set X-Content-Type-Options nosniff
     Header always set X-Frame-Options DENY
     Header always set X-XSS-Protection "1; mode=block"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
-# Cache optimization
+# Cache static assets
 <IfModule mod_expires.c>
-    ExpiresActive on
+    ExpiresActive On
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
-    ExpiresByType application/json "access plus 1 hour"
     ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# Compression
+# Gzip compression
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE image/x-icon
     AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-woff
+    AddOutputFilterByType DEFLATE application/font-woff
+    AddOutputFilterByType DEFLATE application/font-woff2
 </IfModule>
 
-# Prevent access to sensitive files
-<Files "*.env">
-    Order allow,deny
-    Deny from all
-</Files>
-
-<FilesMatch "\.(sql|log|ini)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-# PHP Settings for API
+# PHP settings for better performance
 <IfModule mod_php.c>
+    php_value memory_limit 256M
     php_value upload_max_filesize 10M
     php_value post_max_size 10M
-    php_value max_execution_time 60
-    php_value memory_limit 256M
+    php_value max_execution_time 300
+    php_value max_input_time 300
 </IfModule>

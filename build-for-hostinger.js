@@ -4,43 +4,71 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-console.log('🚀 Building ZH-Love for Hostinger...\n');
+console.log('🚀 Building ZH-Love for Hostinger Premium...');
 
-// Step 1: Clean previous builds
-console.log('1. Cleaning previous builds...');
-try {
-  if (fs.existsSync('out')) {
-    fs.rmSync('out', { recursive: true, force: true });
-  }
-} catch (error) {
-  console.log('   Could not clean "out" directory, continuing...');
-}
+// Step 1: Update next.config.js for static export
+console.log('1. Configuring Next.js for static export...');
+const nextConfigPath = path.join(__dirname, 'next.config.js');
+let nextConfig = fs.readFileSync(nextConfigPath, 'utf8');
 
-try {
-  if (fs.existsSync('.next')) {
-    fs.rmSync('.next', { recursive: true, force: true });
-  }
-} catch (error) {
-  console.log('   Could not clean ".next" directory, continuing...');
-}
+// Add output: 'export' for static build
+nextConfig = nextConfig.replace(
+  '// Remove output: \'export\' to allow both development and static export',
+  '// Enable static export for Hostinger deployment\n  output: \'export\','
+);
 
-// Step 2: Set production environment
-console.log('2. Setting production environment...');
-process.env.NODE_ENV = 'production';
+fs.writeFileSync(nextConfigPath, nextConfig);
 
-// Step 3: Build Next.js static export
-console.log('3. Building Next.js static export...');
+// Step 2: Build the static export
+console.log('2. Building static export...');
 try {
   execSync('npm run build', { stdio: 'inherit' });
+  console.log('✅ Build completed successfully');
 } catch (error) {
   console.error('❌ Build failed:', error.message);
   process.exit(1);
 }
 
-// Step 4: Create .htaccess for frontend routing
+// Step 3: Create public_html structure
+console.log('3. Creating public_html structure...');
+const publicHtmlDir = path.join(__dirname, 'public_html');
+const outDir = path.join(__dirname, 'out');
+
+// Ensure public_html exists
+if (!fs.existsSync(publicHtmlDir)) {
+  fs.mkdirSync(publicHtmlDir, { recursive: true });
+}
+
+// Copy static files from out/ to public_html/
+if (fs.existsSync(outDir)) {
+  const copyRecursive = (src, dest) => {
+    if (fs.statSync(src).isDirectory()) {
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+      }
+      fs.readdirSync(src).forEach(file => {
+        copyRecursive(path.join(src, file), path.join(dest, file));
+      });
+    } else {
+      fs.copyFileSync(src, dest);
+    }
+  };
+  
+  copyRecursive(outDir, publicHtmlDir);
+  console.log('✅ Static files copied to public_html/');
+} else {
+  console.error('❌ Build output not found');
+  process.exit(1);
+}
+
+// Step 4: Create .htaccess for SPA routing
 console.log('4. Creating .htaccess for frontend routing...');
 const htaccessContent = `# Frontend Routing for Next.js Static Export
 RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # API routes - redirect to api folder
 RewriteRule ^api/(.*)$ /api/$1 [L]
@@ -105,55 +133,76 @@ RewriteRule ^(.*)$ /index.html [L]
     AddOutputFilterByType DEFLATE application/x-font-woff
     AddOutputFilterByType DEFLATE application/font-woff
     AddOutputFilterByType DEFLATE application/font-woff2
+</IfModule>
+
+# PHP settings for better performance
+<IfModule mod_php.c>
+    php_value memory_limit 256M
+    php_value upload_max_filesize 10M
+    php_value post_max_size 10M
+    php_value max_execution_time 300
+    php_value max_input_time 300
 </IfModule>`;
 
-fs.writeFileSync(path.join('out', '.htaccess'), htaccessContent);
+fs.writeFileSync(path.join(publicHtmlDir, '.htaccess'), htaccessContent);
+console.log('✅ .htaccess created');
 
-// Step 5: Copy PHP APIs to output
-console.log('5. Copying PHP APIs...');
-const copyRecursiveSync = (src, dest) => {
-  const exists = fs.existsSync(src);
-  const stats = exists && fs.statSync(src);
-  const isDirectory = exists && stats.isDirectory();
-  if (isDirectory) {
-    if (!fs.existsSync(dest)) {
-      fs.mkdirSync(dest, { recursive: true });
+// Step 5: Create index.html redirect for language fallback
+console.log('5. Creating language redirect logic...');
+const indexHtmlPath = path.join(publicHtmlDir, 'index.html');
+if (fs.existsSync(indexHtmlPath)) {
+  let indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+  
+  // Add language detection script
+  const languageScript = `
+<script>
+// Language detection and redirect
+(function() {
+  var userLang = navigator.language || navigator.userLanguage;
+  var path = window.location.pathname;
+  
+  // If not already on a locale path, redirect to appropriate locale
+  if (!path.match(/^\/(en|ar)\//)) {
+    var locale = 'en'; // default
+    if (userLang.startsWith('ar')) {
+      locale = 'ar';
     }
-    fs.readdirSync(src).forEach(childItemName => {
-      copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName));
-    });
-  } else {
-    fs.copyFileSync(src, dest);
+    window.location.href = '/' + locale + '/';
   }
-};
-
-// Copy PHP API files
-copyRecursiveSync('public_html/api', 'out/api');
-copyRecursiveSync('public_html/database', 'out/database');
-
-// Copy existing .htaccess from public_html if exists
-if (fs.existsSync('public_html/.htaccess')) {
-  const phpHtaccess = fs.readFileSync('public_html/.htaccess', 'utf8');
-  const combinedHtaccess = phpHtaccess + '\n\n' + htaccessContent;
-  fs.writeFileSync(path.join('out', '.htaccess'), combinedHtaccess);
+})();
+</script>`;
+  
+  // Insert script before closing head tag
+  indexHtml = indexHtml.replace('</head>', languageScript + '\n</head>');
+  fs.writeFileSync(indexHtmlPath, indexHtml);
+  console.log('✅ Language redirect added to index.html');
 }
 
-// Step 6: Create deployment info
-console.log('6. Creating deployment info...');
-const deploymentInfo = {
-  buildDate: new Date().toISOString(),
-  buildType: 'static-export',
-  target: 'hostinger',
-  apis: 'php',
-  frontend: 'next.js-static'
-};
-fs.writeFileSync(path.join('out', 'deployment-info.json'), JSON.stringify(deploymentInfo, null, 2));
+// Step 6: Create deployment package
+console.log('6. Creating deployment package...');
+const packageName = 'zh-love-hostinger.zip';
+try {
+  execSync(`cd public_html && zip -r ../${packageName} .`, { stdio: 'inherit' });
+  console.log(`✅ Deployment package created: ${packageName}`);
+} catch (error) {
+  console.log('⚠️  Zip command not available, skipping package creation');
+}
 
-console.log('\n✅ Build completed successfully!');
-console.log('\n📁 Files ready for upload in ./out directory');
-console.log('\n🚀 Next steps:');
-console.log('   1. Upload contents of ./out directory to your Hostinger public_html/');
-console.log('   2. Update database credentials in /api/config/database.php');
-console.log('   3. Update domain in /api/config/cors.php');
-console.log('   4. Test your website!');
-console.log('\n🌐 Your site will be available at: https://yourdomain.com'); 
+// Step 7: Restore next.config.js for development
+console.log('7. Restoring next.config.js for development...');
+nextConfig = fs.readFileSync(nextConfigPath, 'utf8');
+nextConfig = nextConfig.replace(
+  '// Enable static export for Hostinger deployment\n  output: \'export\',',
+  '// Remove output: \'export\' to allow both development and static export'
+);
+fs.writeFileSync(nextConfigPath, nextConfig);
+
+console.log('\n🎉 Build completed successfully!');
+console.log('\n📁 Files ready for deployment:');
+console.log('   - public_html/ (upload to Hostinger)');
+console.log('   - zh-love-hostinger.zip (alternative deployment)');
+console.log('\n🚀 Deployment instructions:');
+console.log('   1. Upload public_html/ contents to your Hostinger domain');
+console.log('   2. Ensure PHP APIs are in the /api/ folder');
+console.log('   3. Configure database connection in /api/config/database.php');
+console.log('   4. Test the application at your domain'); 

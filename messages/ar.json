@@ -151,6 +151,25 @@
     "attachFile": "إرفاق ملف",
     "sendButton": "إرسال"
   },
+  "auth": {
+    "email": "البريد الإلكتروني",
+    "username": "اسم المستخدم",
+    "fullName": "الاسم الكامل",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "signIn": "تسجيل الدخول",
+    "signUp": "إنشاء حساب",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "register": "إنشاء حساب",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "rememberMe": "تذكرني",
+    "loginTitle": "مرحباً بعودتك",
+    "loginSubtitle": "سجل دخولك إلى حسابك",
+    "registerTitle": "إنشاء حساب",
+    "registerSubtitle": "انضم إلى مجتمع ZH-Love"
+  },
   "support": {
     "title": "مركز الدعم",
     "subtitle": "احصل على المساعدة في المشاكل التقنية ومساعدة اللعبة",

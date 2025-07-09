@@ -1,0 +1,63 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark gradient background with new colors -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D0D0D;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2C2C2C;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#0D0D0D;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Hexagon pattern -->
+    <pattern id="hexPattern" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,1 45,10 45,30 30,40 15,30 15,10" fill="none" stroke="#3A9A5B" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Tech grid lines -->
+    <pattern id="gridPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="100" stroke="#B0B0B0" stroke-width="0.2" opacity="0.05"/>
+      <line x1="0" y1="0" x2="100" y2="0" stroke="#B0B0B0" stroke-width="0.2" opacity="0.05"/>
+    </pattern>
+    
+    <!-- Radial glow -->
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#3A9A5B;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#3A9A5B;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Base background -->
+  <rect width="1920" height="1080" fill="url(#bgGradient)"/>
+  
+  <!-- Grid overlay -->
+  <rect width="1920" height="1080" fill="url(#gridPattern)"/>
+  
+  <!-- Hexagon pattern overlay -->
+  <rect width="1920" height="1080" fill="url(#hexPattern)"/>
+  
+  <!-- Military-style tech lines -->
+  <g opacity="0.1">
+    <path d="M0,200 L300,200 L350,250 L600,250" stroke="#3A9A5B" stroke-width="1" fill="none"/>
+    <path d="M1920,400 L1620,400 L1570,350 L1320,350" stroke="#3A9A5B" stroke-width="1" fill="none"/>
+    <path d="M0,800 L200,800 L250,850 L500,850" stroke="#326DA8" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="200" r="3" fill="#F2C94C"/>
+    <circle cx="1620" cy="400" r="3" fill="#F2C94C"/>
+  </g>
+  
+  <!-- Subtle map contours -->
+  <g opacity="0.05">
+    <path d="M100,100 Q300,150 500,100 T900,100" stroke="#B0B0B0" stroke-width="2" fill="none"/>
+    <path d="M1000,300 Q1200,350 1400,300 T1800,300" stroke="#B0B0B0" stroke-width="2" fill="none"/>
+    <path d="M200,700 Q400,750 600,700 T1000,700" stroke="#B0B0B0" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Center glow effect -->
+  <ellipse cx="960" cy="540" rx="600" ry="400" fill="url(#glowGradient)"/>
+  
+  <!-- Corner accents -->
+  <g opacity="0.2">
+    <polygon points="0,0 200,0 0,200" fill="#2C2C2C"/>
+    <polygon points="1920,0 1920,200 1720,0" fill="#2C2C2C"/>
+    <polygon points="0,1080 200,1080 0,880" fill="#2C2C2C"/>
+    <polygon points="1920,1080 1720,1080 1920,880" fill="#2C2C2C"/>
+  </g>
+</svg> 

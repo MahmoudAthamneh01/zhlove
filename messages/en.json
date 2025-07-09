@@ -147,6 +147,25 @@
     "attachFile": "Attach file",
     "sendButton": "Send"
   },
+  "auth": {
+    "email": "Email",
+    "username": "Username",
+    "fullName": "Full Name",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember Me",
+    "loginTitle": "Welcome Back",
+    "loginSubtitle": "Sign in to your account",
+    "registerTitle": "Create Account",
+    "registerSubtitle": "Join the ZH-Love community"
+  },
   "support": {
     "title": "Support Center",
     "subtitle": "Get help with technical issues and game assistance",

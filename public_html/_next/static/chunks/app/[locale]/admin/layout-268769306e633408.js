@@ -1,0 +1,21 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[575],{2505:function(e,n,a){"use strict";a.d(n,{Z:function(){return r}});var t=a(2898);/**
+ * @license lucide-react v0.302.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let r=(0,t.Z)("Award",[["circle",{cx:"12",cy:"8",r:"6",key:"1vp47v"}],["path",{d:"M15.477 12.89 17 22l-5-3-5 3 1.523-9.11",key:"em7aur"}]])},9168:function(e,n,a){"use strict";a.d(n,{Z:function(){return r}});var t=a(2898);/**
+ * @license lucide-react v0.302.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let r=(0,t.Z)("Crown",[["path",{d:"m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14",key:"zkxr6b"}]])},3505:function(e,n,a){"use strict";a.d(n,{Z:function(){return r}});var t=a(2898);/**
+ * @license lucide-react v0.302.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let r=(0,t.Z)("Flag",[["path",{d:"M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z",key:"i9b6wo"}],["line",{x1:"4",x2:"4",y1:"22",y2:"15",key:"1cm3nv"}]])},6595:function(e,n,a){Promise.resolve().then(a.bind(a,2330))},2330:function(e,n,a){"use strict";a.r(n),a.d(n,{default:function(){return AdminLayout}});var t=a(7437),r=a(2265),i=a(2749),s=a(4033),l=a(1396),c=a.n(l),d=a(8627),o=a(2457),h=a(5750),u=a(2882),m=a(8957),f=a(9036),x=a(2505),y=a(2898);/**
+ * @license lucide-react v0.302.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let b=(0,y.Z)("FileText",[["path",{d:"M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z",key:"1nnpy2"}],["polyline",{points:"14 2 14 8 20 8",key:"1ew0cm"}],["line",{x1:"16",x2:"8",y1:"13",y2:"13",key:"14keom"}],["line",{x1:"16",x2:"8",y1:"17",y2:"17",key:"17nazh"}],["line",{x1:"10",x2:"8",y1:"9",y2:"9",key:"1a5vjj"}]]);var v=a(3505),p=a(9409),g=a(9168),j=a(345);let k=[{href:"/admin",label:"Dashboard",icon:o.Z},{href:"/admin/users",label:"User Management",icon:h.Z},{href:"/admin/content",label:"Content Moderation",icon:u.Z},{href:"/admin/tournaments",label:"Tournament Management",icon:m.Z},{href:"/admin/clans",label:"Clan Management",icon:f.Z},{href:"/admin/badges",label:"Badge Management",icon:x.Z},{href:"/admin/cms",label:"Content Management",icon:b},{href:"/admin/reports",label:"Reports & Flags",icon:v.Z},{href:"/admin/settings",label:"System Settings",icon:p.Z}];function AdminLayout(e){let{children:n}=e,{data:a,status:l}=(0,i.useSession)(),o=(0,s.useRouter)(),h=(0,s.usePathname)();return((0,r.useEffect)(()=>{var e;if("loading"!==l){if("unauthenticated"===l){o.push("/login");return}if("authenticated"===l&&(null==a?void 0:null===(e=a.user)||void 0===e?void 0:e.role)!=="admin"){o.push("/");return}}},[a,l,o]),"loading"===l)?(0,t.jsx)(d.MainLayout,{children:(0,t.jsx)("div",{className:"min-h-screen flex items-center justify-center",children:(0,t.jsx)("div",{className:"w-8 h-8 border-2 border-zh-accent/20 border-t-zh-accent rounded-full animate-spin"})})}):a&&"admin"===a.user.role?(0,t.jsx)(d.MainLayout,{children:(0,t.jsxs)("div",{className:"flex min-h-screen",children:[(0,t.jsx)("div",{className:"w-64 bg-zh-secondary border-r border-zh-border/20",children:(0,t.jsxs)("div",{className:"p-6",children:[(0,t.jsxs)("div",{className:"flex items-center gap-2 mb-8",children:[(0,t.jsx)(g.Z,{className:"h-6 w-6 text-zh-accent"}),(0,t.jsx)("h2",{className:"text-xl font-bold text-white",children:"Admin Panel"})]}),(0,t.jsx)("nav",{className:"space-y-2",children:k.map(e=>{let n=e.icon,a=h===e.href||"/admin"!==e.href&&h.startsWith(e.href);return(0,t.jsxs)(c(),{href:e.href,className:(0,j.cn)("flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",a?"bg-zh-accent text-white":"text-zh-border hover:text-white hover:bg-zh-container"),children:[(0,t.jsx)(n,{className:"h-4 w-4"}),e.label]},e.href)})})]})}),(0,t.jsx)("div",{className:"flex-1 bg-zh-primary",children:(0,t.jsx)("div",{className:"p-6",children:n})})]})}):null}}},function(e){e.O(0,[250,749,326,335,627,971,472,744],function(){return e(e.s=6595)}),_N_E=e.O()}]);
