@@ -42,7 +42,6 @@ import {
   Gamepad2
 } from 'lucide-react';
 import { AnimatedBackground } from '@/components/ui/animated-background';
-import { setRequestLocale } from 'next-intl/server';
 
 // Section Types for Drag & Drop
 interface SectionType {
@@ -146,11 +145,6 @@ const availableSections: SectionType[] = [
 ];
 
 export default function CMSPage() {
-  // Enable static rendering for this page
-  if (typeof window === 'undefined') {
-    setRequestLocale(useLocale());
-  }
-
   const [pages, setPages] = useState<Page[]>([]);
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
   const [isEditing, setIsEditing] = useState(false);

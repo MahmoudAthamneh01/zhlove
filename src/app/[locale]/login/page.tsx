@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
-import { setRequestLocale } from 'next-intl/server';
 import { useTranslations } from 'next-intl';
 import { MainLayout } from '@/components/layout/main-layout';
 import { AnimatedBackground } from '@/components/ui/animated-background';
@@ -20,11 +19,6 @@ interface LoginPageProps {
 }
 
 export default function LoginPage({ params: { locale } }: LoginPageProps) {
-  // Enable static rendering for this page
-  if (typeof window === 'undefined') {
-    setRequestLocale(locale);
-  }
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -33,6 +27,14 @@ export default function LoginPage({ params: { locale } }: LoginPageProps) {
   
   const router = useRouter();
   const t = useTranslations();
+  const { data: session } = useSession();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (session) {
+      router.push(`/${locale}`);
+    }
+  }, [session, router, locale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,13 +51,9 @@ export default function LoginPage({ params: { locale } }: LoginPageProps) {
       if (result?.error) {
         setError('Invalid email or password');
       } else {
-        // Get the session to confirm login
-        const session = await useSession();
-        if (session) {
-          // Redirect to home with current locale
-          router.push(`/${locale}`);
-          router.refresh();
-        }
+        // Redirect to home with current locale
+        router.push(`/${locale}`);
+        router.refresh();
       }
     } catch (error) {
       setError('An error occurred. Please try again.');

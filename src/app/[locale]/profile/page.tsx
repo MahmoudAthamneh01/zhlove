@@ -28,7 +28,6 @@ import {
   Medal,
   Zap
 } from 'lucide-react';
-import { setRequestLocale } from 'next-intl/server';
 
 interface UserProfile {
   id: string;
@@ -63,11 +62,6 @@ interface ProfilePageProps {
 }
 
 export default function ProfilePage({ params: { locale } }: ProfilePageProps) {
-  // Enable static rendering for this page
-  if (typeof window === 'undefined') {
-    setRequestLocale(locale);
-  }
-
   const { data: session, status } = useSession();
   const router = useRouter();
   const t = useTranslations();

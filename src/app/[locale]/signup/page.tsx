@@ -11,18 +11,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AnimatedBackground } from '@/components/ui/animated-background';
 import { UserPlus, Lock, Mail, User, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
-import { setRequestLocale } from 'next-intl/server';
 
 interface SignupPageProps {
   params: { locale: string };
 }
 
 export default function SignupPage({ params: { locale } }: SignupPageProps) {
-  // Enable static rendering for this page
-  if (typeof window === 'undefined') {
-    setRequestLocale(locale);
-  }
-
   const [formData, setFormData] = useState({
     email: '',
     password: '',

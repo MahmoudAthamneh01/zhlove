@@ -16,6 +16,7 @@ export default function WarRoomClient() {
         <div className="pointer-events-none absolute inset-0 z-10">
           <div className="w-full h-full animate-fog bg-[url('/assets/fog.png')] bg-repeat opacity-20" />
         </div>
+        </div>
         <div className="zh-container relative z-20">
           <div className="bg-zh-primary/80 backdrop-blur-lg rounded-2xl p-8 border border-zh-accent/30 shadow-xl relative overflow-hidden">
             <div className="flex items-center gap-4 mb-8">
